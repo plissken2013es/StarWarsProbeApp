@@ -32,10 +32,10 @@ var StarWarsRebellionSolo = function() {
         "The rebel player failed at establishing a new base.": "El jugador rebelde ha fracasado en su intento de trasladar su base.",
         "WARNING! There is currently no rebel base. Please click on relocate base to select a new base for the rebels.": "AVISO. Actualmente no hay base rebelde. Por favor, haz click en Trasladar Base para elegir su localización.",
         "Waiting for rebel base selection...": "Esperando a que se elija una base rebelde...",
-        "Interrogation Droid: ": "Interrogatorio Droide: ",
-        "Intercept Transmission: new cards (": "Interceptar Comunicaciones: nuevas cartas (",
-        "Intercept Transmission: No imperial card drawn! Sorry!": "Interceptar Comunicaciones: el Imperio no ha robado carta, lo siento.",
-        "Homing Beacon: selected region: ": "Baliza de Seguimiento. Región elegida: ",
+        "Interrogation Droid: ": "Droide Interrogador: ",
+        "Intercept Transmission: new cards (": "Interceptar Transmisión: nuevas cartas (",
+        "Intercept Transmission: No imperial card drawn! Sorry!": "Interceptar Transmisión: el Imperio no ha conseguido cartas, lo siento.",
+        "Homing Beacon: selected region: ": "Sonda de largo alcance. Región elegida: ",
         "Start a new game?": "¿Nueva partida?",    
         "Imperial player starting cards: ": "Cartas iniciales del Imperio: ",
         // --- index.html locales -----
@@ -64,9 +64,9 @@ var StarWarsRebellionSolo = function() {
         "Start of game (all cards)": "Inicio de la partida (con todas las cartas)",
         "Relocate base (4 cards)": "Traslado de la base (4 cartas)",
         "Relocate base (8 cards)": "Traslado de la base (8 cartas)",
-        "Interrogation Droid": "Interrogatorio Droide",
-        "Intercept Transmission": "Interceptar comunicaciones",
-        "Homing Beacon": "Baliza de seguimiento",
+        "Interrogation Droid": "Droide Interrogador",
+        "Intercept Transmission": "Interceptar transmisión",
+        "Homing Beacon": "Sonda de largo alcance",
         "Start new game?": "¿Nueva partida?"
     };
 
