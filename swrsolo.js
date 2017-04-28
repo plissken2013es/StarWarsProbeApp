@@ -35,7 +35,7 @@ var StarWarsRebellionSolo = function() {
         "Interrogation Droid: ": "Droide Interrogador: ",
         "Intercept Transmission: new cards (": "Interceptar Transmisión: nuevas cartas (",
         "Intercept Transmission: No imperial card drawn! Sorry!": "Interceptar Transmisión: el Imperio no ha conseguido cartas, lo siento.",
-        "Homing Beacon: selected region: ": "Sonda de largo alcance. Región elegida: ",
+        "Homing Beacon: selected region: ": "Baliza señalizadora. Región elegida: ",
         "Start a new game?": "¿Nueva partida?",    
         "Imperial player starting cards: ": "Cartas iniciales del Imperio: ",
         // --- index.html locales -----
@@ -66,7 +66,7 @@ var StarWarsRebellionSolo = function() {
         "Relocate base (8 cards)": "Traslado de la base (8 cartas)",
         "Interrogation Droid": "Droide Interrogador",
         "Intercept Transmission": "Interceptar transmisión",
-        "Homing Beacon": "Sonda de largo alcance",
+        "Homing Beacon": "Baliza señalizadora",
         "Start new game?": "¿Nueva partida?"
     };
 
