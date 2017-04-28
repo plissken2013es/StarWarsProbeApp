@@ -89,7 +89,7 @@ var StarWarsRebellionSolo = function() {
     var probe_deck = [];
     var probe_hand = [];
     var initial_hand = [];
-    var rebel_base = "";
+    var rebel_base = null;
     var basic_game = false;
     
     var systems_white = [];
@@ -103,6 +103,7 @@ var StarWarsRebellionSolo = function() {
     };
     
     var InitBasic = function(){
+        rebel_base = null;
         DrawCard('mandalore');
         DrawCard('saleucami');
         DrawCard('corellia');
@@ -113,7 +114,7 @@ var StarWarsRebellionSolo = function() {
     };
     
     var InitAdvanced = function(){
-        
+        rebel_base = null;
         imp_systems.shuffle();
         imp_systems = imp_systems.slice(0, 5);
         for(var i=0; i<imp_systems.length; i++){
@@ -307,11 +308,10 @@ var StarWarsRebellionSolo = function() {
         
         jQuery('.map-selector').click(function(){
             var self = jQuery(this);
-            if(self.hasClass('white')){
+            if(self.hasClass('white')) {
                 self.removeClass('white');
                 self.addClass('green');
-            }
-            else if(self.hasClass('green')){
+            } else if(self.hasClass('green') && rebel_base) {
                 self.removeClass('green');
                 self.addClass('red');
                 
@@ -321,8 +321,8 @@ var StarWarsRebellionSolo = function() {
                     jQuery("#tab_2").click();
                     jQuery('#text_zone').html(locale["Well played! "] + selected + locale[" is the rebel base! The force is strong with you."]);
                 }
-            }
-            else if(self.hasClass('red')){
+            } else {
+                self.removeClass('green');
                 self.removeClass('red');
                 self.addClass('white');
             }
