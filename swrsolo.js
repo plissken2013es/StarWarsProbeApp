@@ -1,4 +1,3 @@
-
 // --- Array additionnal functions ---
 Array.prototype.remove = function(elem) {
     var index = this.indexOf(elem);
@@ -21,8 +20,56 @@ Array.prototype.shuffle = function() {
 }
 
 // ---- Main app class ------------
-var StarWarsRebellionSolo = function(){
-    
+var StarWarsRebellionSolo = function() {
+    var locale = {
+        'New card: ': 'Nueva carta: ',
+        'No card left in the deck!': 'No quedan cartas en el mazo.',
+        "Well played! ": "Bien jugado. ",
+        " is the rebel base! The force is strong with you.": " es la base rebelde. La fuerza es intensa en ti.",
+        " is not the rebel base!": " no es la base rebelde.",
+        "A new base has been established for the rebel player!": "El jugador rebelde ha trasladado su base.",
+        " Previous base: ": " Base anterior: ",
+        "The rebel player failed at establishing a new base.": "El jugador rebelde ha fracasado en su intento de trasladar su base.",
+        "WARNING! There is currently no rebel base. Please click on relocate base to select a new base for the rebels.": "AVISO. Actualmente no hay base rebelde. Por favor, haz click en Trasladar Base para elegir su localización.",
+        "Waiting for rebel base selection...": "Esperando a que se elija una base rebelde...",
+        "Interrogation Droid: ": "Interrogatorio Droide: ",
+        "Intercept Transmission: new cards (": "Interceptar Comunicaciones: nuevas cartas (",
+        "Intercept Transmission: No imperial card drawn! Sorry!": "Interceptar Comunicaciones: el Imperio no ha robado carta, lo siento.",
+        "Homing Beacon: selected region: ": "Baliza de Seguimiento. Región elegida: ",
+        "Start a new game?": "¿Nueva partida?",    
+        "Imperial player starting cards: ": "Cartas iniciales del Imperio: ",
+        // --- index.html locales -----
+        "System: ": "Sistema",
+        "Cancel": "Cancelar",
+        "Rebel player base selection": "Selección Base del jugador rebelde",
+        "Start Basic Game": "Partida básica",
+        "Start Advanced Game": "Partida avanzada",
+        "Draw cards": "Robar cartas",
+        "Guess": "Adivinar",
+        "Relocate": "Trasladar",
+        "Abilities": "Habilidades",
+        "More": "Más...",
+        "Draw a probe card": "Robar una carta Sonda",
+        "Guess rebel base": "Adivinar base rebelde",
+        "Establish a new rebel base": "Trasladar la base rebelde",
+        "Before playing a special card,<br> make sure to update all red systems on ": "Antes de poner en juego una carta especial,<br/> asegúrate de actualizar todos los sistemas en rojo en ",
+        "the map": "el MAPA",
+        "Show cards": "Ver cartas",
+        "Show map": "Ver mapa",
+        "Welcome to this probe deck simulation app. It will help you to play Star Wars Rebellion solo without knowing where the secret rebel base is hidden.": "Bienvenido a este simulador de mazo de Sondas. Sirve para jugar Star Wars Rebellion en solitario sin conocer el paradero de la base secreta rebelde.",
+        "Imperial player cards ": "Cartas del jugador imperial ",
+        "Card ": "Carta ",
+        "Rebel player: Select all prefered systems for a rebel base. The app will try to select a green system first, then a white system if no green is drawn, it will never select red systems. You should set all the systems loyal or subjugated by the imperial player in red.": "El jugador rebelde puede, aunque no es obligatorio, elegir los sistemas en los que prefiere montar su base. Esta aplicación intentará elegir primero uno de los sistemas marcados en VERDE. Si no puede, elegirá un sistema en BLANCO. Nunca elegirá un sistema marcado en rojo. Debes marcar todos los sistemas leales (o subyugados por) el jugador imperial en ROJO.",
+        "Then, select a mode to establish the rebel base:": "Ahora elige un modo de establecer la base rebelde:",
+        "Start of game (all cards)": "Inicio de la partida (con todas las cartas)",
+        "Relocate base (4 cards)": "Traslado de la base (4 cartas)",
+        "Relocate base (8 cards)": "Traslado de la base (8 cartas)",
+        "Interrogation Droid": "Interrogatorio Droide",
+        "Intercept Transmission": "Interceptar comunicaciones",
+        "Homing Beacon": "Baliza de seguimiento",
+        "Start new game?": "¿Nueva partida?"
+    };
+
     var systems = [
         'mon_calamari', 'yavin', 'felucia', 'saleucami',
         'kessel', 'nal_hutta', 'toydaria', 'bothawui', 
@@ -91,9 +138,9 @@ var StarWarsRebellionSolo = function(){
             
             probe_hand.push(card);
             probe_hand.sort();
-            jQuery('#text_zone').html('New card: ' + card);
+            jQuery('#text_zone').html(locale['New card: '] + card);
         }else{
-            jQuery('#text_zone').html('No card left in the deck!');
+            jQuery('#text_zone').html(locale['No card left in the deck!']);
         }
     };
     
@@ -112,9 +159,9 @@ var StarWarsRebellionSolo = function(){
         
         if(selected){
             if(selected == rebel_base){
-                jQuery('#text_zone').html("Well played! " + selected + " is the rebel base! The force is strong with you.");
+                jQuery('#text_zone').html(locale["Well played! "] + selected + locale[" is the rebel base! The force is strong with you."]);
             }else{
-                jQuery('#text_zone').html(selected + " is not the rebel base!");
+                jQuery('#text_zone').html(selected + locale[" is not the rebel base!"]);
             }
         }
     };
@@ -193,9 +240,9 @@ var StarWarsRebellionSolo = function(){
         
         // Text 
         if(rebel_base !== old_base){
-            jQuery('#text_zone').html("A new base has been established for the rebel player!" + ( old_base ? " Previous base: " + old_base : ""));
+            jQuery('#text_zone').html(locale["A new base has been established for the rebel player!"] + ( old_base ? locale[" Previous base: "] + old_base : ""));
         }else{
-            jQuery('#text_zone').html("The rebel player failed at establishing a new base.");
+            jQuery('#text_zone').html(locale["The rebel player failed at establishing a new base."]);
         }
         
         RefreshCardList();
@@ -267,6 +314,13 @@ var StarWarsRebellionSolo = function(){
             else if(self.hasClass('green')){
                 self.removeClass('green');
                 self.addClass('red');
+                
+                var selected = self.attr("id");
+                console.log(selected, rebel_base);
+                if (selected == rebel_base) {
+                    jQuery("#tab_2").click();
+                    jQuery('#text_zone').html(locale["Well played! "] + selected + locale[" is the rebel base! The force is strong with you."]);
+                }
             }
             else if(self.hasClass('red')){
                 self.removeClass('red');
@@ -282,7 +336,7 @@ var StarWarsRebellionSolo = function(){
         jQuery('#map_buttons').hide();
         jQuery('#text_zone_top').hide();
         if(!rebel_base){
-            jQuery('#text_zone').html("WARNING! There is currently no rebel base. Please click on relocate base to select a new base for the rebels.");
+            jQuery('#text_zone').html(locale["WARNING! There is currently no rebel base. Please click on relocate base to select a new base for the rebels."]);
         }
     };
     
@@ -313,10 +367,10 @@ var StarWarsRebellionSolo = function(){
         jQuery('#action_zone').hide();
         jQuery('#map_buttons').show();
         jQuery('#text_zone_top').show();
-        jQuery('#text_zone_top').html("Waiting for rebel base selection...");
+        jQuery('#text_zone_top').html(locale["Waiting for rebel base selection..."]);
         
         //Text
-        var html = "<div>Imperial player starting cards: </div><ul>";
+        var html = "<div>" + locale["Imperial player starting cards: "] + "</div><ul>";
         for(var i=0; i<initial_hand.length; i++){
             html += "<li>" + initial_hand[i] + "</li>";
         }
@@ -370,7 +424,7 @@ var StarWarsRebellionSolo = function(){
         planets.shuffle();
         
         var planets_str = planets.toString().replace(/\,/g, ', ');
-        jQuery('#text_zone').html("Interrogation Droid: " + planets_str);
+        jQuery('#text_zone').html(locale["Interrogation Droid: "] + planets_str);
     }
     
     function InterceptTransmission(){
@@ -405,9 +459,9 @@ var StarWarsRebellionSolo = function(){
         ShowCards();
         
         var planets_str = new_cards.toString().replace(/\,/g, ', ');
-        jQuery('#text_zone').html("Intercept Transmission: new cards (" + new_cards.length + "/" + hand.length +"): " + planets_str);
+        jQuery('#text_zone').html(locale["Intercept Transmission: new cards ("] + new_cards.length + "/" + hand.length +"): " + planets_str);
         if(new_cards.length == 0){
-            jQuery('#text_zone').html("Intercept Transmission: No imperial card drawn! Sorry!");
+            jQuery('#text_zone').html(locale["Intercept Transmission: No imperial card drawn! Sorry!"]);
         }
     }
     
@@ -416,7 +470,7 @@ var StarWarsRebellionSolo = function(){
             var tempList = systems.slice(i, i+4);
             if(tempList.indexOf(rebel_base) >= 0){
                 var planets_str = tempList.toString().replace(/\,/g, ', ');
-                jQuery('#text_zone').html("Homing Beacon: selected region: " + planets_str);
+                jQuery('#text_zone').html(locale["Homing Beacon: selected region: "] + planets_str);
             }
         }
     }
@@ -437,7 +491,7 @@ var StarWarsRebellionSolo = function(){
     });
     
     jQuery('#new_game').click(function(){
-        var confirmed = confirm("Start a new game?");
+        var confirmed = confirm(locale["Start a new game?"]);
         if(confirmed){
             window.location.reload();
         }
@@ -462,7 +516,7 @@ var StarWarsRebellionSolo = function(){
         jQuery('#action_zone').hide();
         jQuery('#map_buttons').show();
         jQuery('#text_zone_top').show();
-        jQuery('#text_zone_top').html("Waiting for rebel base selection...");
+        jQuery('#text_zone_top').html(locale["Waiting for rebel base selection..."]);
         jQuery('#text_zone').html("");
     });
     
@@ -521,8 +575,25 @@ var StarWarsRebellionSolo = function(){
         ShowCards();
     });
     
+    // ------------ locale for index.html -----------------
+    
+    var initSwr = function() {
+        console.log("swr init");
+        
+        jQuery(".locale").each(function(i, el) {
+            if (el.hasAttribute("value")) {
+                var val = el.getAttribute("value");
+                el.setAttribute("value", locale[val] || val);
+            } else if (locale[el.innerHTML]) {
+                el.innerHTML = locale[el.innerHTML];
+            }
+        });
+    };
+    
+    return initSwr;
 };
 
-window.addEventListener("load", function(){
-   var swr = new StarWarsRebellionSolo();
+window.addEventListener("load", function() {
+    var swr = new StarWarsRebellionSolo();
+    swr();
 });
